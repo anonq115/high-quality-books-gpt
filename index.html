@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Context Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #search-container {
+            padding: 20px;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        #search-box {
+            width: 50%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+        }
+        #result-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 20px;
+        }
+        .book {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+        .book-title {
+            font-weight: bold;
+        }
+        .book-author {
+            color: #666;
+        }
+        .search-result {
+            background-color: #eef;
+            border-left: 3px solid blue;
+            margin: 5px 0;
+            padding: 5px;
+        }
+        #compiled-results {
+            padding: 20px;
+        
+        }
+        #compiled-results span {
+            background-clip: text;
+                color: black;
+        }
+        .gradient-1 {
+   background-image: linear-gradient( 111.4deg,  rgba(238,113,113,0.55) 1%, rgba(246,215,148,0.13) 58% );
+        }
+        .gradient-2 {
+        background-image: linear-gradient( 109.6deg,  rgba(245,56,56,0.5) 11.2%, rgba(234,192,117,0.13) 78% );
+        }
+        .gradient-3  {
+    background: linear-gradient(25deg,hsl(338deg 63% 57% / 55%),hsl(353.89deg 83.08% 60.59% / 9%) 50%);
+}
+        .gradient-4 {
+background-image: radial-gradient( circle farthest-corner at 10% 20%, rgb(222 168 248 / 65%) 0%, rgba(168,222,248,1) 21.8%, rgba(189,250,205,1) 35.6%, rgba(243,250,189,1) 52.9%, rgb(250 227 189 / 15%) 66.8%, rgb(248 172 172 / 15%) 90%, rgb(254 211 252 / 15%) 99.7% );
+   }
+        
+   
+    </style>
+</head>
+<body>
+    <div id="search-container">
+        <input type="text" id="search-box" placeholder="Search for a topic...">
+        <button id="search-btn" onclick="searchBooks()">Search/Ask</button>
+    </div>
+
+    <div id="result-container">
+        <!-- Mockup results for 4 different medical books -->
+        <div class="book">
+            <div class="book-title">Harrison's Principles of Internal Medicine</div>
+            <div class="book-author">J. Larry Jameson, Anthony S. Fauci, Dennis L. Kasper, Stephen L. Hauser, Dan L. Longo, Joseph Loscalzo</div>
+            <div class="search-result" id="result1">No results found.</div>
+        </div>
+        <div class="book">
+            <div class="book-title">Gray's Anatomy: The Anatomical Basis of Clinical Practice</div>
+            <div class="book-author">Susan Standring</div>
+            <div class="search-result" id="result2">No results found.</div>
+        </div>
+        <div class="book">
+            <div class="book-title">Goodman & Gilman's: The Pharmacological Basis of Therapeutics</div>
+            <div class="book-author">Laurence Brunton, Bjorn Knollmann, Randa Hilal-Dandan</div>
+            <div class="search-result" id="result3">No results found.</div>
+        </div>
+        <div class="book">
+            <div class="book-title">Robbins & Cotran Pathologic Basis of Disease</div>
+            <div class="book-author">Vinay Kumar, Abul K. Abbas, Jon C. Aster</div>
+            <div class="search-result" id="result4">No results found.</div>
+        </div>
+    </div>
+
+    <p id="compiled-results">Search results will appear here in a continuous text format.</p>
+
+    <script>
+        function searchBooks() {
+            var searchTerm = document.getElementById('search-box').value.toLowerCase();
+
+            // Check if the search term is 'heart palpitations'
+            if (searchTerm === 'heart palpitations') {
+                document.getElementById('result1').textContent = 'Harrison’s discusses heart palpitations in the context of cardiac arrhythmias.';
+                document.getElementById('result2').textContent = 'In Gray’s Anatomy, heart palpitations are mentioned in the section on cardiovascular anatomy.';
+                document.getElementById('result3').textContent = 'Goodman & Gilman’s explores heart palpitations as a side effect of certain medications.';
+                document.getElementById('result4').textContent = 'Robbins & Cotran examines heart palpitations from a pathological perspective.';
+
+                document.getElementById('compiled-results').innerHTML = 
+                    '<span class="gradient-1">Harrison’s discusses heart palpitations in the context of cardiac arrhythmias.</span> ' +
+                    '<span class="gradient-2">In Gray’s Anatomy, heart palpitations are mentioned in the section on cardiovascular anatomy.</span> ' +
+                    '<span class="gradient-3">Goodman & Gilman’s explores heart palpitations as a side effect of certain medications.</span> ' +
+                    '<span class="gradient-4">Robbins & Cotran examines heart palpitations from a pathological perspective.</span>';
+            } else {
+                // Reset to default text if the search term is not 'heart palpitations'
+                var results = document.getElementsByClassName('search-result');
+                for (var i = 0; i < results.length; i++) {
+                    results[i].textContent = 'No results found.';
+                }
+                document.getElementById('compiled-results').textContent = 'No results found.';
+            }
+        }
+    </script>
+</body>
+</html>
